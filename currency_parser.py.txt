@@ -1,0 +1,72 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+from datetime import datetime
+
+def get_currency_rates():
+    url = "https://myfin.by/currency/minsk"
+    
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    }
+    
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
+        
+        soup = BeautifulSoup(response.text, "html.parser")
+        
+        currencies = []
+        rows = soup.find_all("tr", class_="table-row")
+        
+        for row in rows:
+            try:
+                currency_name_elem = row.find("td", class_="currency-name")
+                if currency_name_elem:
+                    currency_name = currency_name_elem.text.strip()
+                    
+                    if any(code in currency_name for code in ["USD", "EUR", "RUB"]):
+                        cells = row.find_all("td", class_="num")
+                        buy_price = cells[0].text.strip() if len(cells) > 0 else "N/A"
+                        sell_price = cells[1].text.strip() if len(cells) > 1 else "N/A"
+                        
+                        currencies.append({
+                            "Валюта": currency_name,
+                            "Покупка (BYN)": buy_price,
+                            "Продажа (BYN)": sell_price,
+                            "Дата": datetime.now().strftime("%d.%m.%Y %H:%M")
+                        })
+                        print(f"  {currency_name}: Покупка {buy_price} / Продажа {sell_price}")
+            except:
+                continue
+        
+        return currencies
+    
+    except Exception as e:
+        print(f"Ошибка: {e}")
+        return None
+
+def save_to_excel(currencies, filename="currency_rates.xlsx"):
+    if not currencies:
+        print("Нет данных для сохранения")
+        return
+    
+    df = pd.DataFrame(currencies)
+    df.to_excel(filename, index=False)
+    print(f"  Данные сохранены в {filename}")
+
+def main():
+    print("=" * 50)
+    print("ПАРСЕР КУРСОВ ВАЛЮТ")
+    print("=" * 50)
+    
+    currencies = get_currency_rates()
+    
+    if currencies:
+        save_to_excel(currencies)
+        print("Готово!")
+    else:
+        print("Не удалось получить курсы.")
+
+if __name__ == "__main__":
+    main()
