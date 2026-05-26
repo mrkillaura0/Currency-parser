@@ -21,7 +21,7 @@ cd Currency-parser
 pip install -r requirements.txt
 
 # 3. Запустить
-python currency_parser.py
+python currency_parser.py```
 После выполнения в папке появится файл currency_rates.xlsx с актуальными курсами.
 
 🔧 Технологии
