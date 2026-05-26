@@ -1,13 +1,21 @@
 # 💱 Парсер курсов валют (Беларусь)
 
-Скрипт на Python для автоматического сбора актуальных курсов доллара, евро и российского рубля с myfin.by. Данные сохраняются в Excel-файл.
+![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+
+Скрипт на Python для автоматического сбора актуальных курсов **доллара, евро и российского рубля** с [myfin.by](https://myfin.by). Данные сохраняются в Excel-файл с временными метками.
+
+---
 
 ## 🛠 Возможности
 
-- Сбор курсов USD, EUR, RUB в реальном времени
-- Сохранение в Excel (.xlsx)
-- Альтернативный источник данных (API НБРБ) при недоступности основного
-- Готов к ежедневному использованию
+- 📊 Сбор курсов **USD, EUR, RUB** в реальном времени
+- 💾 Сохранение в **Excel (.xlsx)** с датой и временем
+- 🔄 Резервный источник данных — **API Нацбанка РБ** при недоступности myfin.by
+- ⏱ Готов к **ежедневному/автоматическому** запуску (cron, Task Scheduler)
+
+---
 
 ## 📦 Установка и запуск
 
@@ -20,32 +28,36 @@ cd Currency-parser
 pip install -r requirements.txt
 
 # 3. Запустить
-python currency_parser.py```
+python currency_parser.py
+```
 
-🔧 Технологии
-Python 3.8+
+После запуска в папке появится файл `currency_rates.xlsx` с актуальными курсами.
 
-BeautifulSoup4
+---
 
-Requests
+## 🔧 Технологии
 
-Pandas
+| Библиотека | Назначение |
+|---|---|
+| `requests` | HTTP-запросы |
+| `BeautifulSoup4` | Парсинг HTML |
+| `pandas` | Обработка данных |
+| `openpyxl` | Запись в Excel |
 
-Openpyxl
+---
 
-👤 Автор
-Студент БГАС. Python-разработчик.
-Принимаю заказы на:
+## 👤 Автор
 
-Парсинг сайтов и сбор данных
+Python-разработчик, специализируюсь на автоматизации и работе с данными.
 
-Telegram-ботов
+**Принимаю заказы:**
 
-Скрипты автоматизации
+- 🕷 Парсинг сайтов и сбор данных
+- 🤖 Telegram-боты
+- ⚙️ Скрипты автоматизации
+- 📊 Обработка Excel / CSV
 
-Обработку Excel/CSV
+**Связаться:**
 
-📞 Контакты
-Telegram: @Vin_ches_ter
-
-Email: mrkillaura0@gmail.com
+- Telegram: [@Vin_ches_ter](https://t.me/Vin_ches_ter)
+- Email: [mrkillaura0@gmail.com](mailto:mrkillaura0@gmail.com)
