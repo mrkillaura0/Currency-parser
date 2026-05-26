@@ -1,4 +1,3 @@
-markdown
 # 💱 Парсер курсов валют (Беларусь)
 
 Скрипт на Python для автоматического сбора актуальных курсов доллара, евро и российского рубля с myfin.by. Данные сохраняются в Excel-файл.
@@ -21,9 +20,7 @@ cd Currency-parser
 pip install -r requirements.txt
 
 # 3. Запустить
-python currency_parser.py```
-После выполнения в папке появится файл currency_rates.xlsx с актуальными курсами.
-
+python currency_parser.py
 🔧 Технологии
 Python 3.8+
 
@@ -51,6 +48,3 @@ Telegram-ботов
 Telegram: @Vin_ches_ter
 
 Email: mrkillaura0@gmail.com
-
-
-
